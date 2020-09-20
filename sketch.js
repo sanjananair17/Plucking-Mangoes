@@ -23,14 +23,14 @@ function setup() {
 
 	stone = new Stone(85, 580, 40, 40);
 
-	mango1 = new Mango(450, 400, 50, 50);
-	mango2 = new Mango(575, 435, 50, 50);
-	mango3 = new Mango(665, 300, 50, 50);
-	mango4 = new Mango(560, 350, 50, 50);
-	mango5 = new Mango(720, 375, 50, 50);
-	mango6 = new Mango(850, 410, 50, 50);
-	mango7 = new Mango(795, 315, 50, 50);
-	mango8 = new Mango(640, 385, 50, 50);
+	mango1 = new Mango(450, 400, 50);
+	mango2 = new Mango(575, 435, 50);
+	mango3 = new Mango(665, 300, 50);
+	mango4 = new Mango(560, 350, 50);
+	mango5 = new Mango(720, 375, 50);
+	mango6 = new Mango(850, 410, 50);
+	mango7 = new Mango(795, 315, 50);
+	mango8 = new Mango(640, 385, 50);
 
     constrain = new Constrain(stone.body,{x:85, y:580});
 
@@ -45,7 +45,14 @@ function draw() {
 
 	Engine.update(engine);
 
-	//isTouching();
+	detectCollision(stone, mango1);
+	detectCollision(stone, mango2);
+	detectCollision(stone, mango3);
+	detectCollision(stone, mango4);
+	detectCollision(stone, mango5);
+	detectCollision(stone, mango6);
+	detectCollision(stone, mango7);
+	detectCollision(stone, mango8);
 
 	tree.display();
 
@@ -82,26 +89,11 @@ function keyPressed(){
 }
 
 function detectCollision(lstone, lmango){
-	if(	stone.body.width / 2 + mango.body.width / 2 >= stone.body.x - mango.body.x && 
-		stone.body.width / 2 + mango.body.width / 2 >= mango.body.x - stone.body.x &&
-		stone.body.height / 2 + mango.body.height / 2 >= mango.body.y - stone.body.y &&
-		stone.body.height / 2 + mango.body.height / 2 >= stone.body.y - mango.body.y){
 		mangoBodyPosition = lmango.body.position;
 		stoneBodyPosition = lstone.body.position;
 
-		var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y,);
+		var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y);
 		if(distance<=lmango.r+lstone.r){
 			Matter.Body.setStatic(lmango.body, false);
 		}
-	}	
 }
-
-/*function isTouching(stone, mango){
-	if(	stone.body.width / 2 + mango.body.width / 2 >= stone.body.x - mango.body.x && 
-		stone.body.width / 2 + mango.body.width / 2 >= mango.body.x - stone.body.x &&
-		stone.body.height / 2 + mango.body.height / 2 >= mango.body.y - stone.body.y &&
-		stone.body.height / 2 + mango.body.height / 2 >= stone.body.y - mango.body.y){
-			Matter.Body.setStatic(mango.body, false);
-		}
-
-}*/
