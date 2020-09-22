@@ -6,6 +6,7 @@ class Constrain{
             stiffness: 0.04,
             length: 10
         }
+        this.pointB = pointB
         this.constraint = Constraint.create(options);
         World.add(world, this.constraint);
     }
@@ -22,6 +23,8 @@ class Constrain{
         if(this.constraint.bodyA){
             var pointA = this.constraint.bodyA.position;
             var pointB = this.pointB;
+            strokeWeight(4);
+            line(pointA.x, pointA.y, pointB.x, pointB.y);
         }
     }
 }
