@@ -20,7 +20,7 @@ function setup() {
 
 	ground = new Ground(400, 690, 1000, 20);
 
-	stone = new Stone(85, 580, 40, 40);
+	stone = new Stone(85, 580, 1, 1);
 	
     constrain = new Constrain(stone.body,{x:85, y:580});
 
